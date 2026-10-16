@@ -1,0 +1,58 @@
+name: Task
+description: A single, well-defined piece of work
+type: Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one clear piece of work. If it belongs to an epic, add it as a sub-issue of that epic.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: DESCRIPTION
+      description: What this task does and why, in one or two sentences.
+      value: "> "
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: SCOPE
+      description: What is included, and where the work stops.
+      value: "> "
+    validations:
+      required: true
+
+  - type: textarea
+    id: tasks
+    attributes:
+      label: TASKS
+      description: Break the work into small, concrete steps.
+      value: |
+        > - [ ] 
+        > - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ACCEPTANCE CRITERIA
+      description: How we know this is done. Each point should be clear and testable.
+      value: |
+        > - [ ] 
+        > - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: NOTES
+      description: |
+        Optional. Add an alert only if the content needs one: `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` or `[!CAUTION]`.
+      placeholder: |
+        > [!WARNING]
+        > This task changes shared configuration. Check the other modules after merging.

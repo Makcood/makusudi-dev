@@ -1,0 +1,47 @@
+name: Epic
+description: A larger body of work, broken down into sub-issues
+type: Epic
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the overall goal. Once created, add each piece of work as a sub-issue of this epic.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: DESCRIPTION
+      description: What this epic achieves and why it matters.
+      value: "> "
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: SCOPE
+      description: The areas of work this epic covers, and where it stops.
+      value: "> "
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: EXPECTED OUTCOME
+      description: What will be true once every sub-issue is complete.
+      value: |
+        > - [ ] 
+        > - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: NOTES
+      description: |
+        Optional. Add an alert only if the content needs one: `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` or `[!CAUTION]`.
+      placeholder: |
+        > [!NOTE]
+        > The sub-issues are stacked and must be completed in order.
