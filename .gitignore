@@ -1,0 +1,35 @@
+# Dependencies
+/node_modules
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
+# Testing
+/coverage
+
+# Environment variables
+.env*
+!.env.example
+
+# Tooling caches
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# Logs
+npm-debug.log*
+
+# Deployment
+.vercel
+
+# Certificates
+*.pem
+
+# os
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
