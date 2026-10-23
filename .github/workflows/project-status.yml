@@ -65,3 +65,75 @@ jobs:
                   issue(number: $number) { projectItems(first: 20) { nodes { id project { id } } } }
                 }
               }' \
+              -f owner="$ORG" -f repo="$REPO" -F number="$number" \
+              --jq ".data.repository.issue.projectItems.nodes[] | select(.project.id == \"$PROJECT_ID\") | .id" || true)
+            if [[ -z "$item" ]]; then
+              echo "#$number is not on the board. Skipped."
+              return
+            fi
+            gh api graphql \
+              -f query='mutation($project: ID!, $item: ID!, $field: ID!, $option: String!) {
+                updateProjectV2ItemFieldValue(input: {
+                  projectId: $project, itemId: $item, fieldId: $field,
+                  value: { singleSelectOptionId: $option }
+                }) { projectV2Item { id } }
+              }' \
+              -f project="$PROJECT_ID" -f item="$item" -f field="$FIELD_ID" -f option="$option" > /dev/null
+            echo "#$number → $status"
+          }
+
+          # Load the task's parent epic and its progress
+          load_epic() {
+            gh api graphql \
+              -f query='query($owner: String!, $repo: String!, $number: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $number) {
+                    parent { number subIssuesSummary { total completed } }
+                  }
+                }
+              }' \
+              -f owner="$ORG" -f repo="$REPO" -F number="$TASK" \
+              --jq '.data.repository.issue.parent // empty' || true
+          }
+
+          if [[ "$EVENT" == "create" ]] || [[ "$DRAFT" == "true" && "$ACTION" != "closed" ]]; then
+            # Work started on the task
+            set_status "$TASK" "In progress"
+            EPIC=$(load_epic)
+            if [[ -n "$EPIC" ]]; then
+              set_status "$(jq -r '.number' <<< "$EPIC")" "In progress"
+            fi
+
+          elif [[ "$ACTION" == "closed" ]]; then
+            if [[ "$MERGED" != "true" ]]; then
+              echo "Pull request closed without merging. Nothing to update."
+              exit 0
+            fi
+            # Task finished: close it, then complete the epic when all its tasks are closed
+            set_status "$TASK" "Complete"
+            gh issue close "$TASK" --repo "$ORG/$REPO" --reason completed || true
+            sleep 5
+            EPIC=$(load_epic)
+            if [[ -n "$EPIC" ]]; then
+              EPIC_NUMBER=$(jq -r '.number' <<< "$EPIC")
+              if [[ $(jq '.subIssuesSummary.completed == .subIssuesSummary.total' <<< "$EPIC") == "true" ]]; then
+                set_status "$EPIC_NUMBER" "Complete"
+                gh issue close "$EPIC_NUMBER" --repo "$ORG/$REPO" --reason completed || true
+              else
+                set_status "$EPIC_NUMBER" "In progress"
+              fi
+            fi
+
+          else
+            # Pull request ready for review: the epic is in review when this is its last open task
+            set_status "$TASK" "In review"
+            EPIC=$(load_epic)
+            if [[ -n "$EPIC" ]]; then
+              EPIC_NUMBER=$(jq -r '.number' <<< "$EPIC")
+              if [[ $(jq '.subIssuesSummary.completed + 1 >= .subIssuesSummary.total' <<< "$EPIC") == "true" ]]; then
+                set_status "$EPIC_NUMBER" "In review"
+              else
+                set_status "$EPIC_NUMBER" "In progress"
+              fi
+            fi
+          fi
