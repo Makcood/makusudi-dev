@@ -1,7 +1,24 @@
 {
-  "name": "personal-portfolio_tmp",
+  "name": "makusudidev",
   "version": "0.1.0",
   "private": true,
+  "description": "Makusudidev is the personal portfolio of Joshua Makusudi, a software engineer building full-stack web, mobile and AI-driven products.",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makusudijoshua/personal-portfolio.git"
+  },
+  "engines": {
+    "node": "24.x",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
