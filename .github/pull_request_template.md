@@ -5,12 +5,14 @@
 #### **CHANGES**
 
 > <!-- List what was changed. Plain bullets, one change per line. -->
-> - 
+>
+> -
 
 #### **VERIFICATION**
 
 > <!-- How you confirmed it works, including failure cases where relevant. -->
-> - [ ] 
+>
+> - [ ]
 
 <!--
 Optional sections. Delete them if they're not needed.

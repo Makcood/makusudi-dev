@@ -32,7 +32,7 @@ body:
       description: What will be true once every sub-issue is complete.
       value: |
         > - [ ] 
-        > - [ ] 
+        > - [ ]
     validations:
       required: true
 
