@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   update-status:
-    name: Update the task status
+    name: Update the task and epic status
     if: github.event_name != 'create' || github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
     steps:
-      - name: Move the task on the project board
+      - name: Move the task and its epic on the project board
         env:
           GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           ORG: ${{ github.repository_owner }}
@@ -28,31 +28,15 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Read the issue number from the branch name, e.g. chore/6-configure-the-root-layout
+          # Read the task number from the branch name, e.g. chore/6-configure-the-root-layout
           if [[ ! "$BRANCH" =~ ^[a-z]+/([0-9]+)- ]]; then
-            echo "Branch '$BRANCH' has no issue number. Nothing to update."
+            echo "Branch '$BRANCH' has no task number. Nothing to update."
             exit 0
           fi
-          ISSUE="${BASH_REMATCH[1]}"
+          TASK="${BASH_REMATCH[1]}"
 
-          # Decide the new status from the event
-          if [[ "$EVENT" == "create" ]]; then
-            STATUS="In progress"
-          elif [[ "$ACTION" == "closed" ]]; then
-            if [[ "$MERGED" != "true" ]]; then
-              echo "Pull request closed without merging. Nothing to update."
-              exit 0
-            fi
-            STATUS="Complete"
-          elif [[ "$DRAFT" == "true" ]]; then
-            STATUS="In progress"
-          else
-            STATUS="In review"
-          fi
-          echo "Issue #$ISSUE → $STATUS"
-
-          # Find the project, its Status field and the option for the new status
-          read -r PROJECT_ID FIELD_ID OPTION_ID < <(gh api graphql \
+          # Load the project, its Status field and the status options
+          PROJECT=$(gh api graphql \
             -f query='query($org: String!, $number: Int!) {
               organization(login: $org) {
                 projectV2(number: $number) {
@@ -63,43 +47,21 @@ jobs:
                 }
               }
             }' \
-            -f org="$ORG" -F number="$PROJECT_NUMBER" \
-            --jq ".data.organization.projectV2 | [.id, .field.id, (.field.options[] | select(.name == \"$STATUS\") | .id)] | @tsv")
+            -f org="$ORG" -F number="$PROJECT_NUMBER" --jq '.data.organization.projectV2')
+          PROJECT_ID=$(jq -r '.id' <<< "$PROJECT")
+          FIELD_ID=$(jq -r '.field.id' <<< "$PROJECT")
 
-          if [[ -z "${OPTION_ID:-}" ]]; then
-            echo "::error::The Status field has no option named '$STATUS'."
-            exit 1
-          fi
-
-          # Find the issue's item on this project
-          ITEM_ID=$(gh api graphql \
-            -f query='query($owner: String!, $repo: String!, $number: Int!) {
-              repository(owner: $owner, name: $repo) {
-                issue(number: $number) {
-                  projectItems(first: 20) { nodes { id project { id } } }
+          # Set the status of an issue, if the issue is on the board
+          set_status() {
+            local number="$1" status="$2" option item
+            option=$(jq -r --arg s "$status" '.field.options[] | select(.name == $s) | .id' <<< "$PROJECT")
+            if [[ -z "$option" ]]; then
+              echo "::error::The Status field has no option named '$status'."
+              exit 1
+            fi
+            item=$(gh api graphql \
+              -f query='query($owner: String!, $repo: String!, $number: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  issue(number: $number) { projectItems(first: 20) { nodes { id project { id } } } }
                 }
-              }
-            }' \
-            -f owner="$ORG" -f repo="$REPO" -F number="$ISSUE" \
-            --jq ".data.repository.issue.projectItems.nodes[] | select(.project.id == \"$PROJECT_ID\") | .id" || true)
-
-          if [[ -z "$ITEM_ID" ]]; then
-            echo "Issue #$ISSUE is not on the project board. Nothing to update."
-            exit 0
-          fi
-
-          # Update the status
-          gh api graphql \
-            -f query='mutation($project: ID!, $item: ID!, $field: ID!, $option: String!) {
-              updateProjectV2ItemFieldValue(input: {
-                projectId: $project, itemId: $item, fieldId: $field,
-                value: { singleSelectOptionId: $option }
-              }) { projectV2Item { id } }
-            }' \
-            -f project="$PROJECT_ID" -f item="$ITEM_ID" -f field="$FIELD_ID" -f option="$OPTION_ID" \
-            > /dev/null
-
-          # Close the issue once its pull request is merged, including stacked pull requests
-          if [[ "$STATUS" == "Complete" ]]; then
-            gh issue close "$ISSUE" --repo "$ORG/$REPO" --reason completed || true
-          fi
+              }' \
