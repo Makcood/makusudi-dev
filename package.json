@@ -24,7 +24,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --cache",
-    "lint:fix": "eslint . --fix --cache"
+    "lint:fix": "eslint . --fix --cache",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.4.2",
