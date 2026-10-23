@@ -1,0 +1,59 @@
+name: Feature
+description: Propose a new feature for the product.
+title: "feat: "
+type: Feature
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: PROBLEM
+      description: What is missing or limiting today, and who it affects.
+      placeholder: |
+        > Visitors cannot get quick answers about services and availability without sending a message and waiting for a reply.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: PROPOSAL
+      description: What the feature does and how it solves the problem.
+      placeholder: |
+        > Add a chatbot that answers common questions about services, availability and pricing, and hands over to the contact form when needed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: SCOPE
+      description: What is included, and what is explicitly out of scope.
+      placeholder: |
+        > - Chatbot widget available on every page
+        > - Answers based on the service and project content
+        > - Hand-over to the contact form
+        > - Out of scope: live chat with a person
+    validations:
+      required: true
+
+  - type: textarea
+    id: success
+    attributes:
+      label: SUCCESS CRITERIA
+      description: How it will be known that the feature works and delivers value.
+      placeholder: |
+        > - [ ] Common questions are answered without sending a message
+        > - [ ] Unanswered questions reach the contact form
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: NOTES
+      description: Optional. Dependencies, risks, references or open questions.
+      placeholder: |
+        > Requires a decision on the AI provider before delivery.
+    validations:
+      required: false
