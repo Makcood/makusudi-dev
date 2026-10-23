@@ -31,6 +31,7 @@
     "format:fix": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "quality:fix": "npm run format:fix && npm run lint:fix && npm run lint:css:fix",
+    "quality:check": "npm run format && npm run lint && npm run lint:css && npm run build && npm run typecheck",
     "prepare": "husky"
   },
   "dependencies": {
