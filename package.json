@@ -23,12 +23,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix --cache",
+    "lint:css": "stylelint \"**/*.css\" --cache",
+    "lint:css:fix": "stylelint \"**/*.css\" --fix --cache",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "quality:fix": "npm run format:fix && npm run lint:fix && npm run lint:css:fix",
+    "quality:check": "npm run format && npm run lint && npm run lint:css && npm run build && npm run typecheck",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "next": "16.4.2",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
@@ -37,7 +49,20 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "stylelint": "^17.16.0",
+    "stylelint-config-clean-order": "^10.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "unrs-resolver@1.12.2": true
   }
 }

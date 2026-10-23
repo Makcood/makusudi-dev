@@ -32,7 +32,7 @@ body:
       description: Break the work into small, concrete steps.
       value: |
         > - [ ] 
-        > - [ ] 
+        > - [ ]
     validations:
       required: true
 
@@ -43,7 +43,7 @@ body:
       description: How we know this is done. Each point should be clear and testable.
       value: |
         > - [ ] 
-        > - [ ] 
+        > - [ ]
     validations:
       required: true
 
