@@ -10,7 +10,7 @@ export const rootMetadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  authors: [{ name: site.author, url: site.url }],
+  // authors: [{ name: site.author, url: site.url }],
   creator: site.author,
   openGraph: {
     type: "website",

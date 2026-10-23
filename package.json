@@ -25,6 +25,8 @@
     "start": "next start",
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix --cache",
+    "lint:css": "stylelint \"**/*.css\" --cache",
+    "lint:css:fix": "stylelint \"**/*.css\" --fix --cache",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "typecheck": "tsc --noEmit"
@@ -47,6 +49,10 @@
     "eslint-plugin-simple-import-sort": "^14.0.0",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "stylelint": "^17.16.0",
+    "stylelint-config-clean-order": "^10.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^8.1.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
