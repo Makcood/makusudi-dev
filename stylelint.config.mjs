@@ -1,6 +1,6 @@
 import { propertyGroups } from "stylelint-config-clean-order";
 
-// Same grouping as the preset, without the blank line between groups
+// Reuse the clean-order property groups, without blank lines between groups
 const propertiesOrder = propertyGroups.map((properties) => ({
   properties,
   emptyLineBefore: "never",
@@ -12,6 +12,7 @@ const config = {
   extends: ["stylelint-config-standard", "stylelint-config-clean-order"],
 
   rules: {
+    // Allow Tailwind v4 at-rules, which are not part of standard CSS
     "at-rule-no-unknown": [
       true,
       {
@@ -30,6 +31,7 @@ const config = {
       },
     ],
 
+    // Skip prelude validation for Tailwind at-rules, such as class lists in @apply
     "at-rule-prelude-no-invalid": [
       true,
       {
@@ -43,6 +45,14 @@ const config = {
           "plugin",
           "reference",
         ],
+      },
+    ],
+
+    // Tailwind at-rules act as selectors, so a nested & inside them is valid
+    "nesting-selector-no-missing-scoping-root": [
+      true,
+      {
+        ignoreAtRules: ["utility", "variant", "custom-variant"],
       },
     ],
 
