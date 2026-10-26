@@ -1,0 +1,235 @@
+@layer base {
+  :root {
+    /* --- DISPLAY --- */
+    --text-display-sm-size: 2.25rem;
+    --text-display-sm-line-height: 2.75rem;
+    --text-display-sm-weight: 600;
+    --text-display-sm-tracking: -0.02em;
+    --text-display-md-size: 2.5rem;
+    --text-display-md-line-height: 3rem;
+    --text-display-md-weight: 600;
+    --text-display-md-tracking: -0.02em;
+    --text-display-lg-size: 3rem;
+    --text-display-lg-line-height: 3.5rem;
+    --text-display-lg-weight: 600;
+    --text-display-lg-tracking: -0.02em;
+    --text-display-xl-size: 3.5rem;
+    --text-display-xl-line-height: 4rem;
+    --text-display-xl-weight: 600;
+    --text-display-xl-tracking: -0.02em;
+
+    /* --- HEADING --- */
+    --text-h1-size: 2rem;
+    --text-h1-line-height: 2.5rem;
+    --text-h1-weight: 600;
+    --text-h1-tracking: -0.01em;
+    --text-h2-size: 1.75rem;
+    --text-h2-line-height: 2.25rem;
+    --text-h2-weight: 600;
+    --text-h2-tracking: -0.01em;
+    --text-h3-size: 1.5rem;
+    --text-h3-line-height: 2rem;
+    --text-h3-weight: 500;
+    --text-h3-tracking: -0.01em;
+    --text-h4-size: 1.25rem;
+    --text-h4-line-height: 1.75rem;
+    --text-h4-weight: 500;
+    --text-h4-tracking: 0em;
+    --text-h5-size: 1.125rem;
+    --text-h5-line-height: 1.75rem;
+    --text-h5-weight: 500;
+    --text-h5-tracking: 0em;
+    --text-h6-size: 1rem;
+    --text-h6-line-height: 1.5rem;
+    --text-h6-weight: 500;
+    --text-h6-tracking: 0em;
+
+    /* --- BODY --- */
+    --text-body-sm-size: 0.875rem;
+    --text-body-sm-line-height: 1.25rem;
+    --text-body-sm-weight: 400;
+    --text-body-sm-tracking: 0.01em;
+    --text-body-md-size: 1rem;
+    --text-body-md-line-height: 1.5rem;
+    --text-body-md-weight: 400;
+    --text-body-md-tracking: 0em;
+    --text-body-lg-size: 1.125rem;
+    --text-body-lg-line-height: 1.75rem;
+    --text-body-lg-weight: 400;
+    --text-body-lg-tracking: 0em;
+
+    /* --- LABEL --- */
+    --text-label-sm-size: 0.75rem;
+    --text-label-sm-line-height: 1rem;
+    --text-label-sm-weight: 500;
+    --text-label-sm-tracking: 0.01em;
+    --text-label-md-size: 0.875rem;
+    --text-label-md-line-height: 1.25rem;
+    --text-label-md-weight: 500;
+    --text-label-md-tracking: 0.01em;
+    --text-label-lg-size: 1rem;
+    --text-label-lg-line-height: 1.5rem;
+    --text-label-lg-weight: 500;
+    --text-label-lg-tracking: 0em;
+
+    /* --- LAYOUT --- */
+    --layout-header-height: 4.25rem;
+
+    /* --- MOTION: DURATION --- */
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --duration-medium: 300ms;
+    --duration-slow: 450ms;
+
+    /* --- MOTION: EASING --- */
+    --ease-linear: linear;
+    --ease-out-soft: cubic-bezier(0, 0.56, 0.46, 1);
+    --ease-in-out-crisp: cubic-bezier(0.6, 0, 0.4, 1);
+  }
+}
+
+/* ================================================================================== */
+/* RESPONSIVE TYPOGRAPHY — TABLET                                                     */
+/* ================================================================================== */
+
+@media (width >= 768px) {
+  :root {
+    /* --- DISPLAY --- */
+    --text-display-sm-size: 3rem;
+    --text-display-sm-line-height: 3.5rem;
+    --text-display-md-size: 3.5rem;
+    --text-display-md-line-height: 4rem;
+    --text-display-lg-size: 4rem;
+    --text-display-lg-line-height: 4.5rem;
+    --text-display-xl-size: 4.5rem;
+    --text-display-xl-line-height: 5rem;
+
+    /* --- HEADING --- */
+    --text-h1-size: 2.5rem;
+    --text-h1-line-height: 3rem;
+    --text-h1-tracking: -0.02em;
+    --text-h2-size: 2rem;
+    --text-h2-line-height: 2.5rem;
+    --text-h3-size: 1.75rem;
+    --text-h3-line-height: 2.25rem;
+    --text-h4-size: 1.5rem;
+    --text-h4-line-height: 2rem;
+    --text-h4-tracking: -0.01em;
+    --text-h5-size: 1.25rem;
+    --text-h5-line-height: 1.75rem;
+    --text-h6-size: 1.125rem;
+    --text-h6-line-height: 1.75rem;
+  }
+}
+
+/* ================================================================================== */
+/* RESPONSIVE TYPOGRAPHY — DESKTOP                                                    */
+/* ================================================================================== */
+
+@media (width >= 1280px) {
+  :root {
+    /* --- DISPLAY --- */
+    --text-display-sm-size: 3.5rem;
+    --text-display-sm-line-height: 4rem;
+    --text-display-md-size: 4rem;
+    --text-display-md-line-height: 4.5rem;
+    --text-display-lg-size: 4.5rem;
+    --text-display-lg-line-height: 5rem;
+    --text-display-xl-size: 5rem;
+    --text-display-xl-line-height: 5.5rem;
+
+    /* --- HEADING --- */
+    --text-h1-size: 3rem;
+    --text-h1-line-height: 3.5rem;
+    --text-h2-size: 2.5rem;
+    --text-h2-line-height: 3rem;
+    --text-h2-tracking: -0.02em;
+    --text-h3-size: 2rem;
+    --text-h3-line-height: 2.5rem;
+    --text-h4-size: 1.75rem;
+    --text-h4-line-height: 2.25rem;
+    --text-h5-size: 1.5rem;
+    --text-h5-line-height: 2rem;
+    --text-h5-tracking: -0.01em;
+    --text-h6-size: 1.25rem;
+    --text-h6-line-height: 1.75rem;
+  }
+}
+
+/* ================================================================================== */
+/* TAILWIND UTILITIES — TYPOGRAPHY                                                    */
+/* ================================================================================== */
+
+@theme inline {
+  /* --- DISPLAY --- */
+  --text-display-sm: var(--text-display-sm-size);
+  --text-display-sm--line-height: var(--text-display-sm-line-height);
+  --text-display-sm--letter-spacing: var(--text-display-sm-tracking);
+  --text-display-sm--font-weight: var(--text-display-sm-weight);
+  --text-display-md: var(--text-display-md-size);
+  --text-display-md--line-height: var(--text-display-md-line-height);
+  --text-display-md--letter-spacing: var(--text-display-md-tracking);
+  --text-display-md--font-weight: var(--text-display-md-weight);
+  --text-display-lg: var(--text-display-lg-size);
+  --text-display-lg--line-height: var(--text-display-lg-line-height);
+  --text-display-lg--letter-spacing: var(--text-display-lg-tracking);
+  --text-display-lg--font-weight: var(--text-display-lg-weight);
+  --text-display-xl: var(--text-display-xl-size);
+  --text-display-xl--line-height: var(--text-display-xl-line-height);
+  --text-display-xl--letter-spacing: var(--text-display-xl-tracking);
+  --text-display-xl--font-weight: var(--text-display-xl-weight);
+
+  /* --- HEADING --- */
+  --text-h1: var(--text-h1-size);
+  --text-h1--line-height: var(--text-h1-line-height);
+  --text-h1--letter-spacing: var(--text-h1-tracking);
+  --text-h1--font-weight: var(--text-h1-weight);
+  --text-h2: var(--text-h2-size);
+  --text-h2--line-height: var(--text-h2-line-height);
+  --text-h2--letter-spacing: var(--text-h2-tracking);
+  --text-h2--font-weight: var(--text-h2-weight);
+  --text-h3: var(--text-h3-size);
+  --text-h3--line-height: var(--text-h3-line-height);
+  --text-h3--letter-spacing: var(--text-h3-tracking);
+  --text-h3--font-weight: var(--text-h3-weight);
+  --text-h4: var(--text-h4-size);
+  --text-h4--line-height: var(--text-h4-line-height);
+  --text-h4--letter-spacing: var(--text-h4-tracking);
+  --text-h4--font-weight: var(--text-h4-weight);
+  --text-h5: var(--text-h5-size);
+  --text-h5--line-height: var(--text-h5-line-height);
+  --text-h5--letter-spacing: var(--text-h5-tracking);
+  --text-h5--font-weight: var(--text-h5-weight);
+  --text-h6: var(--text-h6-size);
+  --text-h6--line-height: var(--text-h6-line-height);
+  --text-h6--letter-spacing: var(--text-h6-tracking);
+  --text-h6--font-weight: var(--text-h6-weight);
+
+  /* --- BODY --- */
+  --text-body-sm: var(--text-body-sm-size);
+  --text-body-sm--line-height: var(--text-body-sm-line-height);
+  --text-body-sm--letter-spacing: var(--text-body-sm-tracking);
+  --text-body-sm--font-weight: var(--text-body-sm-weight);
+  --text-body-md: var(--text-body-md-size);
+  --text-body-md--line-height: var(--text-body-md-line-height);
+  --text-body-md--letter-spacing: var(--text-body-md-tracking);
+  --text-body-md--font-weight: var(--text-body-md-weight);
+  --text-body-lg: var(--text-body-lg-size);
+  --text-body-lg--line-height: var(--text-body-lg-line-height);
+  --text-body-lg--letter-spacing: var(--text-body-lg-tracking);
+  --text-body-lg--font-weight: var(--text-body-lg-weight);
+
+  /* --- LABEL --- */
+  --text-label-sm: var(--text-label-sm-size);
+  --text-label-sm--line-height: var(--text-label-sm-line-height);
+  --text-label-sm--letter-spacing: var(--text-label-sm-tracking);
+  --text-label-sm--font-weight: var(--text-label-sm-weight);
+  --text-label-md: var(--text-label-md-size);
+  --text-label-md--line-height: var(--text-label-md-line-height);
+  --text-label-md--letter-spacing: var(--text-label-md-tracking);
+  --text-label-md--font-weight: var(--text-label-md-weight);
+  --text-label-lg: var(--text-label-lg-size);
+  --text-label-lg--line-height: var(--text-label-lg-line-height);
+  --text-label-lg--letter-spacing: var(--text-label-lg-tracking);
+  --text-label-lg--font-weight: var(--text-label-lg-weight);
+}
