@@ -8,6 +8,6 @@
   "tailwindPreserveWhitespace": false,
   "tailwindPreserveDuplicates": false,
   "tailwindFunctions": ["clsx", "tw"],
-  "tailwindStylesheet": "./app/globals.css",
+  "tailwindStylesheet": "./styles/globals.css",
   "plugins": ["prettier-plugin-tailwindcss"]
 }

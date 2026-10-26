@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { instrumentSans } from "@/config/font";
 import { rootMetadata } from "@/config/metadata";
 
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata: Metadata = rootMetadata;
 

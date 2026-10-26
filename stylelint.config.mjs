@@ -30,6 +30,22 @@ const config = {
       },
     ],
 
+    "at-rule-prelude-no-invalid": [
+      true,
+      {
+        ignoreAtRules: [
+          "apply",
+          "theme",
+          "custom-variant",
+          "variant",
+          "utility",
+          "source",
+          "plugin",
+          "reference",
+        ],
+      },
+    ],
+
     // Tailwind v4 requires the string form; the standard config rewrites it to url()
     "import-notation": "string",
 
