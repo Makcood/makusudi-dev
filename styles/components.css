@@ -1,0 +1,83 @@
+@property --reveal-index {
+  inherits: false;
+  initial-value: 0;
+  syntax: "<integer>";
+}
+
+@keyframes reveal {
+  from {
+    translate: 0 2.5rem;
+    opacity: 0;
+  }
+
+  to {
+    translate: 0 0;
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-word {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .reveal-mask {
+    overflow: hidden;
+  }
+
+  .reveal-mask > * {
+    translate: 0 0;
+    display: block;
+    transition: translate var(--duration-slow) var(--ease-out-soft);
+    transition-delay: calc(var(--duration-fast) + var(--reveal-index) * 60ms);
+  }
+
+  @starting-style {
+    .reveal-mask > * {
+      translate: 0 110%;
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @layer components {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: cover calc(8% + var(--reveal-index) * 5%) cover
+        calc(42% + var(--reveal-index) * 5%);
+    }
+
+    .reveal-words {
+      view-timeline-name: --reveal-words;
+    }
+
+    .reveal-word {
+      animation: reveal-word linear both;
+      animation-timeline: --reveal-words;
+      animation-range: cover calc(15% + var(--reveal-index) * 2%) cover
+        calc(15% + var(--reveal-index) * 2% + 18%);
+    }
+  }
+}
+
+/* Unlayered on purpose, so it always overrides the components layer */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-mask > * {
+    translate: none;
+    transition: none;
+  }
+
+  .reveal,
+  .reveal-word {
+    translate: none;
+    opacity: 1;
+    animation: none;
+  }
+}

@@ -1,0 +1,31 @@
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+
+@utility duration-normal {
+  transition-duration: var(--duration-normal);
+}
+
+@utility duration-medium {
+  transition-duration: var(--duration-medium);
+}
+
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
+}
+
+@utility ease-out-soft {
+  transition-timing-function: var(--ease-out-soft);
+}
+
+@utility ease-in-out-crisp {
+  transition-timing-function: var(--ease-in-out-crisp);
+}
