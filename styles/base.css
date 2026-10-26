@@ -1,0 +1,105 @@
+@layer base {
+  html {
+    scroll-padding-block-start: var(--layout-header-height);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings:
+      "ss02" 1,
+      "ss09" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-size: var(--text-body-md-size);
+    font-weight: var(--text-body-md-weight);
+    line-height: var(--text-body-md-line-height);
+    color: var(--color-foreground);
+    letter-spacing: var(--text-body-md-tracking);
+    background-color: var(--color-background);
+  }
+
+  h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    line-height: var(--text-h1-line-height);
+    letter-spacing: var(--text-h1-tracking);
+  }
+
+  h2 {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    line-height: var(--text-h2-line-height);
+    letter-spacing: var(--text-h2-tracking);
+  }
+
+  h3 {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    line-height: var(--text-h3-line-height);
+    letter-spacing: var(--text-h3-tracking);
+  }
+
+  h4 {
+    font-size: var(--text-h4-size);
+    font-weight: var(--text-h4-weight);
+    line-height: var(--text-h4-line-height);
+    letter-spacing: var(--text-h4-tracking);
+  }
+
+  h5 {
+    font-size: var(--text-h5-size);
+    font-weight: var(--text-h5-weight);
+    line-height: var(--text-h5-line-height);
+    letter-spacing: var(--text-h5-tracking);
+  }
+
+  h6 {
+    font-size: var(--text-h6-size);
+    font-weight: var(--text-h6-weight);
+    line-height: var(--text-h6-line-height);
+    letter-spacing: var(--text-h6-tracking);
+  }
+
+  p {
+    font-size: var(--text-body-md-size);
+    font-weight: var(--text-body-md-weight);
+    line-height: var(--text-body-md-line-height);
+    letter-spacing: var(--text-body-md-tracking);
+  }
+
+  small {
+    font-size: var(--text-body-sm-size);
+    font-weight: var(--text-body-sm-weight);
+    line-height: var(--text-body-sm-line-height);
+    letter-spacing: var(--text-body-sm-tracking);
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  nav a,
+  header a,
+  footer a {
+    text-decoration: none;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    color: var(--color-primary-foreground);
+    background-color: var(--color-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
