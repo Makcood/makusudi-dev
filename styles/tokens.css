@@ -1,5 +1,8 @@
 @layer base {
   :root {
+    /* --- FONT FAMILY --- */
+    --font-sans: instrumentsans;
+
     /* --- DISPLAY --- */
     --text-display-sm-size: 2.25rem;
     --text-display-sm-line-height: 2.75rem;
